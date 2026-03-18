@@ -80,5 +80,6 @@ app.get("/test-sqli", (req, res) => {
   db.query("SELECT * FROM users WHERE id = " + id, (err, result) => {
     if (err) return res.status(500).send(err);
     res.json(result);
+    
   });
 });
