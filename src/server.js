@@ -67,11 +67,14 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-// ❌ EXERCICE 1 - Injection SQL volontaire 
+// ❌ EXERCICE 1 - Injection SQL volontaire (sans dépendance externe)
+const { execSync } = require('child_process');
+
 app.get('/test-sqli', (req, res) => {
-  const id = req.query.id;
-  const query = `SELECT * FROM users WHERE id = '${id}'`; 
-  res.json({ query }); 
+  const username = req.query.username;
+  // Injection via execSync - détecté par Semgrep p/security-audit
+  const result = execSync(`sqlite3 mydb.db "SELECT * FROM users WHERE name='${username}'"`)
+  res.send(result.toString());
 });
 
 app.listen(3000, () => console.log('✅ Secure server running'));
