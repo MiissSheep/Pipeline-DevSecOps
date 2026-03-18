@@ -1,2 +1,2 @@
-![Security](https://github.com/<user>/<repo>/workflows/DevSecOps%20Pipeline/badge.svg)
+![Security](https://github.com/MiissSheep/pipeline-devsecops/workflows/DevSecOps%20Pipeline/badge.svg)
 
