@@ -69,17 +69,3 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 app.listen(3000, () => console.log('✅ Secure server running'));
-
-const mysql = require("mysql");
-const db = mysql.createConnection({});
-
-app.get("/test-sqli", (req, res) => {
-  const id = req.query.id;
-
-  // ⚠️ volontairement vulnérable
-  db.query("SELECT * FROM users WHERE id = " + id, (err, result) => {
-    if (err) return res.status(500).send(err);
-    res.json(result);
-    
-  });
-});
